@@ -2,7 +2,7 @@ import { SERVER_ERROR_CODE } from "../constant.js";
 import { User } from "../modles/user.model.js";
 import ApiError from "./ApiError.class.js";
 
-export default generateAccessAndRefreshTokens = async (userId) => {
+const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
     const accessToken = await user.generateAccessToken();
@@ -17,3 +17,5 @@ return {accessToken, refreshToken}
     throw new ApiError(SERVER_ERROR_CODE, `Server issue: ${error}`);
   }
 };
+
+export default generateAccessAndRefreshTokens
