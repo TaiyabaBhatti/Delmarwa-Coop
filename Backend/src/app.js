@@ -2,8 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
-
-export const app = express();
+const app = express();
 
 app.use(cookieParser)
 app.use(express.json({limit:'10kb'}))
@@ -15,4 +14,14 @@ app.use(cors({
 }))
 
 
+// Router paths
 
+import userRoute from './routes/user.routes.js';
+import productRoute from './routes/product.routes.js';
+
+app.use('api/users',userRoute)
+app.use('api/products',productRoute)
+
+
+
+export default app
