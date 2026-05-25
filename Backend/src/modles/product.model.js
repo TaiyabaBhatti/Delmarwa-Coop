@@ -1,4 +1,4 @@
-import mongoose, { mongo, Schema } from "mongoose";
+import { mongoose, Schema } from "mongoose";
 const productSchema = new Schema(
   {
     title: {
@@ -16,16 +16,18 @@ const productSchema = new Schema(
     },
     description:{
       type: String,
-      required: true,
+      
       
     },
-    keyFeatures: [{
+    keyFeatures: 
+    // multiple features -  ui as bullet points
+    [{
       type: String,
     }],
-    image: {
-        type:String,
-        required:true,
-    },
+    // multile images
+    image: [{
+        type:String, 
+    }],
     rating:{
         type:Number,
         default:0
@@ -36,13 +38,9 @@ const productSchema = new Schema(
     },
     stockCount : {
         type: Number,
-  required: true,
+
   default: 0,
     },
-    owner:{
-      type:mongoose.Types.ObjectId,
-      ref:"User"
-    }
   },
   { timestamps: true }
 );

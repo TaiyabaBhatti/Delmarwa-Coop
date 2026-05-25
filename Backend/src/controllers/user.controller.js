@@ -5,6 +5,7 @@ import {
   NOT_FOUND_CODE,
   UNAUTHORIZED_CODE,
 } from "../constant.js";
+import { User } from "../modles/user.model.js";
 
 import ApiError from "../utility/ApiError.class.js";
 import ApiResponse from "../utility/ApiResponse.class.js";
@@ -13,6 +14,7 @@ import generateAccessRefreshTokens from "../utility/generateAccessRefreshTokens.
 
 // register user
 export const registerUser = async (req, res, next) => {
+  
   try {
     const { username, email, password, fullname } = req.body;
     if ([username, email, password, fullname].some((field) => !field)) {
@@ -41,7 +43,7 @@ export const registerUser = async (req, res, next) => {
       throw new ApiError(CONFLICT_CODE, "User not created");
     }
     res
-      .status(CREATED)
+      .status(CREATED_CODE)
       .json(
         new ApiResponse(CREATED_CODE, createdUser, "Successfully registered")
       );
@@ -52,6 +54,7 @@ export const registerUser = async (req, res, next) => {
 
 // user login
 export const loginUser = async (req, res, next) => {
+  console.log("1")
   try {
     const { identifier, password } = req.body;
     if (!identifier || !password) {
@@ -68,11 +71,11 @@ export const loginUser = async (req, res, next) => {
       );
     }
 
-    const checkPassword = await userInDb.isPasswordCorrect(password);
+    const checkPassword = await userInDb.passwordCheck(password);
     if (!checkPassword) {
       throw new ApiError(UNAUTHORIZED_CODE, "Password is incorrect");
     }
-    const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
+    const { accessToken, refreshToken } = await generateAccessRefreshTokens(
       userInDb._id
     );
     const loggedInUser = await User.findById(userInDb._id).select(
