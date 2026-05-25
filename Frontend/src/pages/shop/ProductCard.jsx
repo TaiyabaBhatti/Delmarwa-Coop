@@ -9,7 +9,7 @@ const ProductCard = ({ data }) => {
   // console.log(data);
   return (
    <NavLink to={APP_ROUTES_NAME.productDetail.replace(":productId",data._id)} className={""}>
-     <div className="rounded-lg border border-athens-gray w-3xs pt-2">
+     <div className="rounded-lg shadow-sm hover:shadow-md transition overflow-hidden border border-athens-gray min-w-3xs pt-2">
       {/* product image */}
       <ImageState src={data.image[0]}/>
 

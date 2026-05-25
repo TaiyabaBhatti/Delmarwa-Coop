@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import { getAllProducts } from "../../api/productApi";
 import Loading from "../../components/StatesShowing.jsx/Loading";
 import StateMessage from "../../components/StatesShowing.jsx/StateMessage";
+import Wrapper from "../../components/Wrapper";
 const ProductCatlouge = () => {
   // ui states for showing
   const [loading, setLoading] = useState(true);
@@ -34,8 +35,9 @@ const ProductCatlouge = () => {
   }, []);
 
   return (
-    <section className="py-12 px-56">
-      <section className="flex flex-row gap-4 flex-wrap">
+    
+      <Wrapper properties={"py-12"}>
+ <section className="grid grid-cols-2 max-lg:grid-cols-1 xl:grid-cols-3 gap-4">
         {/* loading */}
         {loading && <Loading text={"Getting Products..."} />}
         {/* error */}
@@ -62,7 +64,9 @@ const ProductCatlouge = () => {
         })
         )}
       </section>
-    </section>
+      </Wrapper>
+     
+    
   );
 };
 
