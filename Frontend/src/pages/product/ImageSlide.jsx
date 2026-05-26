@@ -8,29 +8,10 @@ import "swiper/css/thumbs";
 import "swiper/css/free-mode";
 import { useState } from "react";
 import { useEffect } from "react";
+import ImageStateBlock from "../../components/StatesShowing.jsx/ImageStateBlock";
 
 const ImageSlide = ({ images, alt }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-//   const [viewPort,setViewPort] = useState(window.innerWidth);
-//   const [thumbSlideGap,setThumbSlideGap] = useState(-110)
-
-
-// useEffect(()=>{
-
-// if(viewPort < 1280){
-   
-// setThumbSlideGap(-140);
-// }
-
-// if(viewPort < 1024){
-   
-// setThumbSlideGap(-650);
-// }
-
-// },[viewPort,thumbSlideGap])
-
-
-
 
   return (
     <div className="w-full  lg:max-w-80 xl:max-w-md space-y-3">
@@ -41,12 +22,16 @@ const ImageSlide = ({ images, alt }) => {
         thumbs={{ swiper: thumbsSwiper }}
         className="relative z-10 rounded-xl overflow-hidden"
       >
-        {images.map((icon, index) => {
+        {images.map((src, index) => {
           return (
             <SwiperSlide key={index} className="">
-              <div className=" w-full h-96 aspect-square ">
-                <img src={icon} alt="" className=" w-full h-96 object-cover" />
-              </div>
+              <ImageStateBlock
+                src={src}
+                alt={alt}
+                parentProperties={"w-full h-96 aspect-square "}
+                childProperties={"w-full h-96 object-cover"}
+              />
+              
             </SwiperSlide>
           );
         })}
@@ -60,13 +45,14 @@ const ImageSlide = ({ images, alt }) => {
         modules={[FreeMode, Thumbs]}
         className="mySwiper overflow-hidden cursor-pointer "
       >
-        {images.map((icon, index) => {
+        {images.map((src, index) => {
           return (
             <SwiperSlide key={index} className="">
+              
               <div className=" h-20 w-20 rounded-sm aspect-square">
                 <img
-                  src={icon}
-                  alt=""
+                  src={src}
+                  alt={alt}
                   className="rounded-sm object-cover h-20 w-20"
                 />
               </div>
