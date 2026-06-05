@@ -31,7 +31,6 @@ const ImageSlide = ({ images, alt }) => {
                 parentProperties={"w-full h-96 aspect-square "}
                 childProperties={"w-full h-96 object-cover"}
               />
-              
             </SwiperSlide>
           );
         })}
@@ -48,13 +47,13 @@ const ImageSlide = ({ images, alt }) => {
         {images.map((src, index) => {
           return (
             <SwiperSlide key={index} className="">
-              
               <div className=" h-20 w-20 rounded-sm aspect-square">
                 <img
                   src={src}
                   alt={alt}
                   className="rounded-sm object-cover h-20 w-20"
                 />
+               
               </div>
             </SwiperSlide>
           );

@@ -1,3 +1,4 @@
+import { UNAUTHORIZED_CODE } from "../constant.js";
 import { User } from "../modles/user.model.js";
 import ApiError from "../utility/ApiError.class.js";
 import jwt from "jsonwebtoken";
@@ -6,7 +7,7 @@ export const verifyJWTToken = async (req, _, next) => {
   try {
     const accessToken = req.cookies.accessToken;
     if (!accessToken) {
-      throw new ApiError(401, "Unauthorised Access");
+      throw new ApiError(UNAUTHORIZED_CODE, "Unauthorised Access");
     }
 
     const decodedInfo = jwt.verify(
@@ -17,7 +18,7 @@ export const verifyJWTToken = async (req, _, next) => {
       "-password -refreshToken"
     );
     if (!user) {
-      throw new ApiError(401, "Invalid Token");
+      throw new ApiError(UNAUTHORIZED_CODE, "Invalid Token");
     }
     req.user = user;
     next();

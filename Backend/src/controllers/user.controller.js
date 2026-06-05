@@ -3,19 +3,20 @@ import {
   CONFLICT_CODE,
   CREATED_CODE,
   NOT_FOUND_CODE,
+  SUCCESS_CODE,
   UNAUTHORIZED_CODE,
 } from "../constant.js";
 import { User } from "../modles/user.model.js";
 
 import ApiError from "../utility/ApiError.class.js";
 import ApiResponse from "../utility/ApiResponse.class.js";
+import { asyncHandler } from "../utility/asyncHandler.js";
 import generateAccessRefreshTokens from "../utility/generateAccessRefreshTokens.js";
 
 
 // register user
-export const registerUser = async (req, res, next) => {
+export const registerUser = asyncHandler(async (req, res) => {
   
-  try {
     const { username, email, password, fullname } = req.body;
     if ([username, email, password, fullname].some((field) => !field)) {
       throw new ApiError(BAD_REQUEST_CODE, "All fields are required");
@@ -42,20 +43,18 @@ export const registerUser = async (req, res, next) => {
     if (!createdUser) {
       throw new ApiError(CONFLICT_CODE, "User not created");
     }
-    res
+   return res
       .status(CREATED_CODE)
       .json(
         new ApiResponse(CREATED_CODE, createdUser, "Successfully registered")
       );
-  } catch (error) {
-    next(error);
-  }
-};
+  
+});
+
 
 // user login
-export const loginUser = async (req, res, next) => {
-  console.log("1")
-  try {
+export const loginUser = asyncHandler(async (req, res) => {
+ 
     const { identifier, password } = req.body;
     if (!identifier || !password) {
       throw new ApiError(BAD_REQUEST_CODE, "All fields are required");
@@ -85,7 +84,7 @@ export const loginUser = async (req, res, next) => {
       httpOnly: true,
       secure: true,
     };
-    res
+   return res
       .status(CREATED_CODE)
       .cookie("accessToken", accessToken, options)
       .cookie("refreshToken", refreshToken, options)
@@ -96,7 +95,28 @@ export const loginUser = async (req, res, next) => {
           "User logged In Successfully"
         )
       );
-  } catch (error) {
-    next(error);
-  }
-};
+ 
+});
+
+
+// logout user
+export const logoutUser = asyncHandler(async(req, res) => {
+    await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        $set: { refreshToken: undefined },
+      },
+      { returnDocument:"after" }
+    );
+    const options = {
+      httpOnlt: true,
+      secure: true,
+    };
+
+    res
+      .status(200)
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
+      .json(new ApiResponse(SUCCESS_CODE, {}, "User logged Out"));
+ 
+});

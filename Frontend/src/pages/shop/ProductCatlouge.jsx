@@ -4,6 +4,8 @@ import { getAllProducts } from "../../api/productApi";
 import Loading from "../../components/StatesShowing.jsx/Loading";
 import StateMessage from "../../components/StatesShowing.jsx/StateMessage";
 import Wrapper from "../../components/Wrapper";
+import { getErrorMessage } from "../../utils/getErrorMessage";
+import RefreshButton from "../../components/RefreshButton";
 const ProductCatlouge = () => {
   // ui states for showing
   const [loading, setLoading] = useState(true);
@@ -11,62 +13,52 @@ const ProductCatlouge = () => {
 
   // data state
   const [products, setProducts] = useState([]);
-
+  const [refreshKey, setRefreshKey] = useState(0);
+  const getProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await getAllProducts();
+      const productData = response.data.data;
+      setProducts(productData);
+      setErrorMessage(null);
+    } catch (error) {
+      setErrorMessage(getErrorMessage(error));
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const getProducts = async () => {
-      setLoading(true);
-      try {
-        const response = await getAllProducts();
-        const productData = response.data.data;
-        setProducts(productData);
-        setErrorMessage(null);
-       
-      } catch (error) {
-        console.log(error);
-        setErrorMessage(
-          error.response?.data?.message || "Failed to fetch products"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
     getProducts();
   }, []);
 
   return (
-    
-      <Wrapper properties={"py-12"}>
- <section className="grid grid-cols-2 max-lg:grid-cols-1 xl:grid-cols-3 gap-4">
-        {/* loading */}
-        {loading && <Loading text={"Getting Products..."} />}
-        {/* error */}
-        {!loading && errorMessage && (
-          <StateMessage text={errorMessage} properties={"text-tall-poppy"} />
-        )}
+    <Wrapper properties={"py-12"}>
+      {errorMessage && <RefreshButton func={getProducts} />}
+      {/* loading */}
+      {loading && <Loading text={"Getting Products..."} />}
+      {/* error */}
+      {!loading && errorMessage && (
+        <StateMessage text={errorMessage} properties={"text-tall-poppy "} />
+      )}
 
-        {/* empty  */}
-        {!loading && !errorMessage && products.length === 0 && (
-          <StateMessage
-            text={"No Products Available"}
-            properties={"text-scarpa-flow"}
-          />
-        )}
+      {/* empty  */}
+      {!loading && !errorMessage && products.length === 0 && (
+        <StateMessage
+          text={"No Products Available"}
+          properties={"text-scarpa-flow"}
+        />
+      )}
 
-        {/* exists */}
-        {!loading && !errorMessage && products.length > 0 && (
-           
-        products.map((product)=>{
-            
-           
-          return  <ProductCard data={product} key={product._id}/>
-            
-        })
-        )}
+      {/* exists */}
+      <section className="grid grid-cols-2 max-lg:grid-cols-1 xl:grid-cols-3 gap-4">
+        {!loading &&
+          !errorMessage &&
+          products.length > 0 &&
+          products.map((product) => {
+            return <ProductCard data={product} key={product._id} />;
+          })}
       </section>
-      </Wrapper>
-     
-    
+    </Wrapper>
   );
 };
 

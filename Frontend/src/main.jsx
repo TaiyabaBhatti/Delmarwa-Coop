@@ -4,10 +4,13 @@ import "./app.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import AuthState from "./context/AuthState.jsx";
+import CartState from "./context/CartState.jsx";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthState>
-      <App />
+      <CartState>
+        <App />
+      </CartState>
     </AuthState>
   </BrowserRouter>
 );

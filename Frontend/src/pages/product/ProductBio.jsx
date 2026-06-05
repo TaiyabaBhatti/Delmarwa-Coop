@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaStar } from "react-icons/fa6";
 import StockBlock from "./StockBlock";
+import { CartContext } from "../../context/cartContext";
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTES_NAME } from "../../utils/appRoutesNames";
+import ButtonSubmit from "../account/ButtonSubmit";
 
 const ProductBio = ({ data }) => {
+  const { setCartItems } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const addToCart = () => {
+    setCartItems(data);
+    console.log("Added Item");
+    navigate(APP_ROUTES_NAME.cartPage);
+  };
+
   return (
     <div className="space-y-2.5 sm:space-y-5">
       {/* heading */}
-      <h1 className="text-blue-zodiac text-2xl sm:text-3xl font-bold">{data.title}</h1>
+      <h1 className="text-blue-zodiac text-2xl sm:text-3xl font-bold">
+        {data.title}
+      </h1>
 
       {/* brand and rating */}
       <div className="flex flex-row items-center gap-x-2.5">
@@ -27,15 +42,25 @@ const ProductBio = ({ data }) => {
       <StockBlock stock={data.stockCount} />
 
       {/* price */}
-      <p className="text-3xl sm:text-4xl font-extrabold text-tall-poppy">${data.price}</p>
+      <p className="text-3xl sm:text-4xl font-extrabold text-tall-poppy">
+        ${data.price}
+      </p>
       {/* description */}
       <p className="text-blue-zodiac font-normal leading-6">
         {data.description}
       </p>
 
-      <button className="uppercase rounded-sm bg-tall-poppy text-white text-sm font-bold w-60 xl:w-80 py-3 px-5 cursor-pointer">
+      {/* <button
+        onClick={}
+        className="uppercase rounded-sm bg-tall-poppy text-white text-sm font-bold  py-3 px-5 cursor-pointer"
+      >
         Add to cart
-      </button>
+      </button> */}
+      <ButtonSubmit
+        value={"Add to cart"}
+        func={() => addToCart()}
+        properties={"w-60! xl:w-80!"}
+      />
     </div>
   );
 };

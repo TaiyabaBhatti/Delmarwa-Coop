@@ -4,46 +4,50 @@ const productSchema = new Schema(
     title: {
       type: String,
       required: true,
-      unique:true,
+      unique: true,
     },
-    brandName:{
+    brandName: {
       type: String,
       required: true,
     },
     price: {
-        type:Number,
-        required:true,
+      type: Number,
+      required: true,
     },
-    description:{
+    description: {
       type: String,
-      
-      
     },
-    keyFeatures: 
-    // multiple features -  ui as bullet points
-    [{
-      type: String,
-    }],
+    keyFeatures:
+      // multiple features -  ui as bullet points
+      [
+        {
+          type: String,
+        },
+      ],
     // multile images
-    image: [{
-        type:String, 
-    }],
-    rating:{
-        type:Number,
-        default:0
+    image: [
+      {
+        type: String,
+      },
+    ],
+    rating: {
+      type: Number,
+      default: 0,
     },
-     numReviews:{
-        type:Number,
-        default:0
+    numReviews: {
+      type: Number,
+      default: 0,
     },
-    stockCount : {
-        type: Number,
-
-  default: 0,
+    stockCount: {
+      default: 0,
+      type: Number,
     },
+    category:{
+      type:Schema.Types.ObjectId,
+      ref:"Category"
+    }
   },
   { timestamps: true }
 );
 
-
-export const Product = mongoose.model("Product",productSchema); 
+export const Product = mongoose.model("Product", productSchema);

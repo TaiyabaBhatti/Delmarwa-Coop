@@ -1,12 +1,14 @@
 export const APP_ROUTES_NAME = {
   homePage: "/",
   productsPage: "/products",
-  productDetail:"/products/:productId",
+  productDetail: "/products/:productId",
+  cartPage: "/cart",
   farmSystemPage: "/farm-systems",
   bulkFeedPage: "/bulk-feed",
   resourcesPage: "/resources",
   aboutPage: "/about",
   contactPage: "/contact",
-  login:"/login",
-  register:"/register"
+  accountPage: "/account",
+  // loginPage:"/login",
+  // registerPage:"/register"
 };

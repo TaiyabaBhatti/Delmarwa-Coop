@@ -6,13 +6,10 @@ import { asyncHandler } from "../utility/asyncHandler.js";
 
 export const getAllProducts = asyncHandler(async (req, res) => {
   const productsFromDB = await Product.find();
-  
-  if(!productsFromDB || productsFromDB.length === 0){
-     return res.status(SUCCESS_CODE).json( new ApiResponse(
-        SUCCESS_CODE,
-        [],
-        "No products Found"
-      ))
+  if (productsFromDB.length === 0) {
+    return res
+      .status(SUCCESS_CODE)
+      .json(new ApiResponse(SUCCESS_CODE, [], "No products Found"));
   }
 
   return res
@@ -42,5 +39,3 @@ export const getSingleProduct = asyncHandler(async (req, res) => {
       )
     );
 });
-
-
