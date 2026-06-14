@@ -1,22 +1,22 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 // this file is all about authentication
 
 export const loginUser = async (data) => {
-  return await axios.post(`/api/users/login`, data);
+  return await axiosInstance.post(`/api/users/login`, data);
 };
 
 export const registerUser = async (data) => {
-  return await axios.post("api/users/register", data);
+  return await axiosInstance.post("api/users/register", data);
 };
 export const logout = async () => {
-  return await axios.get(`/api/users/logout`);
+  return await axiosInstance.get(`/api/users/logout`);
 };
 
 // export const refreshToken = async () => {
-//   return await axios.post(`/api/users/refresh-token`);
+//   return await axiosInstance.post(`/api/users/refresh-token`);
 // };
 
 export const verifyToken = async () => {
-  return await axios.get(`/api/users/verify-token`);
+  return await axiosInstance.get(`/api/users/verify-token`);
 };

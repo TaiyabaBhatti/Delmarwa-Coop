@@ -1,9 +1,9 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 export const createOrder = async (data) => {
-  return await axios.post(`/api/orders/create-order`, data);
+  return await axiosInstance.post(`/api/orders/create-order`, data);
 };
 
 export const getOrderById = async (orderId) => {
-  return await axios.get(`/api/orders/${orderId}`);
+  return await axiosInstance.get(`/api/orders/${orderId}`);
 };

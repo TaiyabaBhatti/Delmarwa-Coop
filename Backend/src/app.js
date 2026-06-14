@@ -29,13 +29,5 @@ app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
 
-app.get("/new", (req, res) => {
-  res.send("API Running");
-});
-app.use((req, res, next) => {
-  console.log("Incoming request:", req.method, req.url);
-  next();
-});
-
 app.use(errorMiddleware);
 export default app;
