@@ -24,7 +24,9 @@ import userRoute from "./routes/user.routes.js";
 import productRoute from "./routes/product.routes.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 import orderRoute from "./routes/order.routes.js";
-
+app.get("/", (req, res) => {
+  res.send("API Running");
+});
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
