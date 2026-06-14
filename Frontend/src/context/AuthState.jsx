@@ -6,33 +6,30 @@ import { verifyToken } from "../api/authApi.js";
 const AuthState = ({ children }) => {
   // data i want globally
   const [currUser, setCurrUser] = useState(null);
-  const [fullname, setFullname] = useState(null);
-
   const [globalMessage, setGlobalMessage] = useState("");
-  const [loginStatus, setLoginStatus] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [authLoading, setauthLoading] = useState(true);
+
+  // derived states
+  const loginStatus = !!currUser;
+  const fullname = currUser?.fullname;
 
   useEffect(() => {
-    setLoading(true);
     const checkJwtToken = async () => {
       try {
         const res = await verifyToken();
         setCurrUser(res.data.data);
-        setFullname(res.data.data.fullname);
-
-        setLoginStatus(true);
-        setLoading(false);
+        console.log(res.data.data);
+        setauthLoading(false);
       } catch (error) {
         // NotificationPopup(error,"error")
         if (error.response?.status === 401) {
           //This is Expected no need to console ->  console.log(`Expected Error: ${error.response.statusText} || ${error.message}`)
-        } else {
-          // console.log(`UnExpected Error: ${error}`);
+          setCurrUser(null);
+          return; // expected situation
         }
-        setCurrUser(null);
-        setLoginStatus(false);
+        console.log(error);
       } finally {
-        setLoading(false);
+        setauthLoading(false);
       }
     };
 
@@ -44,11 +41,10 @@ const AuthState = ({ children }) => {
       value={{
         currUser,
         globalMessage,
-        loading,
+        authLoading,
         setGlobalMessage,
         setCurrUser,
         fullname,
-        setLoginStatus,
         loginStatus,
       }}
     >

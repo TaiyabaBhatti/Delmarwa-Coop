@@ -26,18 +26,17 @@ const RegisterForm = ({ setAccountToggle }) => {
     try {
       setLoading(true);
       const response = await registerUser(data);
-    //   reset();
+      //   reset();
       console.log("Create Success");
-      console.log(response)
+      console.log(response);
       setCurrUser(response.data.data);
       setLoginStatus(true);
       navigate("/");
     } catch (error) {
-        console.log(error)
-    //   setErrorDesc(`${error.response.data.message} ${error.status}`);
-    }
-    finally{
-        setLoading(false)
+      console.log(error);
+      //   setErrorDesc(`${error.response.data.message} ${error.status}`);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -52,32 +51,32 @@ const RegisterForm = ({ setAccountToggle }) => {
         <form onSubmit={handleSubmit(formRegister)} className="space-y-5">
           <div>
             <InputField
+              labelText={"Username"}
               labelFor={"username"}
               message={"username is required"}
               type={"text"}
-              placeholder={"Username"}
               register={register}
               errors={errors}
             />
             <InputErrors labelFor={"username"} errors={errors} />
           </div>
-           <div>
+          <div>
             <InputField
+              labelText={"Email"}
               labelFor={"email"}
               message={"email is required"}
               type={"text"}
-              placeholder={"Email"}
               register={register}
               errors={errors}
             />
             <InputErrors labelFor={"email"} errors={errors} />
           </div>
-           <div>
+          <div>
             <InputField
+              labelText={"Full Name"}
               labelFor={"fullname"}
               message={"fullname is required"}
               type={"text"}
-              placeholder={"fullname"}
               register={register}
               errors={errors}
             />
@@ -85,16 +84,16 @@ const RegisterForm = ({ setAccountToggle }) => {
           </div>
           <div>
             <InputField
+              labelText={"Password"}
               labelFor={"password"}
               message={"Password is required"}
               type={"password"}
-              placeholder={"Password"}
               register={register}
               errors={errors}
             />
             <InputErrors labelFor={"password"} errors={errors} />
           </div>
-          <ButtonSubmit value={"Register"} loading={loading}/>
+          <ButtonSubmit value={"Register"} loading={loading} />
         </form>
         <ButtonEffect
           message={"Already have an Account?"}
@@ -102,7 +101,6 @@ const RegisterForm = ({ setAccountToggle }) => {
           status={true}
           setAccountToggle={setAccountToggle}
         />
-      
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const CartBlock = () => {
         className="flex flex-row gap-x-1.5 items-center text-blue-950"
       >
         <FaCartShopping className="text-blue-zodiac text-lg font-black" />
-        <p className="text-sm font-semibold md:block hidden">$45.66</p>
+        {/* <p className="text-sm font-semibold md:block hidden">$45.66</p> */}
       </NavLink>
     </ButtonIconStyle>
   );

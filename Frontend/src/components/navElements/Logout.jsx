@@ -5,19 +5,20 @@ import { useNavigate } from "react-router-dom";
 import { APP_ROUTES_NAME } from "../../utils/appRoutesNames";
 import { FaSignOutAlt } from "react-icons/fa";
 import ButtonIconStyle from "./ButtonIconStyle";
+import { CartContext } from "../../context/cartContext";
 
 const Logout = () => {
-  const { setLoginStatus, setCurrUser } = useContext(AuthContext);
+  const { setCurrUser } = useContext(AuthContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
   const navigate = useNavigate();
   const logoutUser = async () => {
     try {
       const response = await logout();
-      setLoginStatus(false);
-      setCurrUser(false);
+      setCurrUser(null);
+      setCartItems([]);
       navigate(APP_ROUTES_NAME.homePage);
     } catch (error) {
       console.log(error);
-      console.log(`${error.response} ${error.status}`);
     } finally {
     }
 

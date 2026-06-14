@@ -1,10 +1,10 @@
 import React from "react";
 
-const Headline = () => {
+const Headline = ({ itemsNo }) => {
   return (
     <div>
       <h1 className="text-3xl font-bold text-blue-zodiac">
-        Your Cart (3 Items)
+        Your Cart ({itemsNo} Items)
       </h1>
     </div>
   );

@@ -13,7 +13,6 @@ const ProductCatlouge = () => {
 
   // data state
   const [products, setProducts] = useState([]);
-  const [refreshKey, setRefreshKey] = useState(0);
   const getProducts = async () => {
     setLoading(true);
     try {
@@ -48,7 +47,6 @@ const ProductCatlouge = () => {
           properties={"text-scarpa-flow"}
         />
       )}
-
       {/* exists */}
       <section className="grid grid-cols-2 max-lg:grid-cols-1 xl:grid-cols-3 gap-4">
         {!loading &&

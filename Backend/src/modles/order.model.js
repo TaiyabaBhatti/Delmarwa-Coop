@@ -1,10 +1,19 @@
 import { mongoose, Schema } from "mongoose";
+import { addressSchema } from "./address.model.js";
 const orderItemSchema = new Schema({
   productId: {
     type: Schema.Types.ObjectId,
     ref: "Product",
   },
   quantity: {
+    type: Number,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  price: {
     type: Number,
     required: true,
   },
@@ -20,15 +29,12 @@ const orderSchema = new Schema(
       ref: "User",
     },
     orderItems: [orderItemSchema],
-    address:{
-        type:String,
-        required:true
+    address: addressSchema,
+    status: {
+      type: String,
+      enum: ["PENDING", "CANCELLED", "DELIVERED"],
+      default: "PENDING",
     },
-    status:{
-        type:String,
-        enum:["PENDING","CANCELLED","DELIVERED"],
-        default:"PENDING"
-    }
   },
   { timestamps: true }
 );

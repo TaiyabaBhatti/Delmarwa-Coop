@@ -9,7 +9,7 @@ import { loginUser } from "../../api/authApi";
 import ButtonSubmit from "./ButtonSubmit";
 import ButtonEffect from "./ButtonEffect";
 
-const LoginForm = ({setAccountToggle}) => {
+const LoginForm = ({ setAccountToggle }) => {
   const {
     handleSubmit,
     register,
@@ -17,8 +17,7 @@ const LoginForm = ({setAccountToggle}) => {
     formState: { errors },
   } = useForm();
 
-  const { currUser, setCurrUser, setLoginStatus, loginStatus } =
-    useContext(AuthContext);
+  const { currUser, setCurrUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errordesc, setErrorDesc] = useState("");
@@ -26,16 +25,14 @@ const LoginForm = ({setAccountToggle}) => {
     try {
       setLoading(true);
       const response = await loginUser(data);
-    //   reset();
+      //   reset();
       console.log("Login Success");
       setCurrUser(response.data.data);
-      setLoginStatus(true);
       navigate("/");
     } catch (error) {
       setErrorDesc(`${error.response.data.message} ${error.status}`);
-    }
-     finally{
-        setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -51,9 +48,9 @@ const LoginForm = ({setAccountToggle}) => {
           <div>
             <InputField
               labelFor={"identifier"}
+              labelText={"Email Address or Username"}
               message={"email address or username is required"}
               type={"text"}
-              placeholder={"Email Address or Username"}
               register={register}
               errors={errors}
             />
@@ -62,25 +59,23 @@ const LoginForm = ({setAccountToggle}) => {
           <div>
             <InputField
               labelFor={"password"}
+              labelText={"Password"}
               message={"Password is required"}
               type={"password"}
-              placeholder={"Password"}
               register={register}
               errors={errors}
             />
             <InputErrors labelFor={"password"} errors={errors} />
           </div>
-          <ButtonSubmit value={"Login"} loading={loading}/>
-         
+          <ButtonSubmit value={"Login"} loading={loading} />
         </form>
-        
-         <ButtonEffect
+
+        <ButtonEffect
           message={"Don't have an Account?"}
           action={"Register Now"}
           status={false}
           setAccountToggle={setAccountToggle}
         />
-      
       </div>
     </div>
   );

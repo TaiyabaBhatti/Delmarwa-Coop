@@ -2,18 +2,29 @@ import React, { useContext } from "react";
 import { FaStar } from "react-icons/fa6";
 import StockBlock from "./StockBlock";
 import { CartContext } from "../../context/cartContext";
+import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTES_NAME } from "../../utils/appRoutesNames";
 import ButtonSubmit from "../account/ButtonSubmit";
 
 const ProductBio = ({ data }) => {
-  const { setCartItems } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
+  const { loginStatus } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const addToCart = () => {
-    setCartItems(data);
-    console.log("Added Item");
-    navigate(APP_ROUTES_NAME.cartPage);
+  const handleCart = () => {
+    if (loginStatus) {
+      addToCart({
+        productId: data._id,
+        title: data.title,
+        price: data.price,
+        image: data.image[0],
+        stockCount: data.stockCount,
+      });
+      navigate(APP_ROUTES_NAME.cartPage);
+    } else {
+      navigate(APP_ROUTES_NAME.accountPage);
+    }
   };
 
   return (
@@ -50,15 +61,9 @@ const ProductBio = ({ data }) => {
         {data.description}
       </p>
 
-      {/* <button
-        onClick={}
-        className="uppercase rounded-sm bg-tall-poppy text-white text-sm font-bold  py-3 px-5 cursor-pointer"
-      >
-        Add to cart
-      </button> */}
       <ButtonSubmit
         value={"Add to cart"}
-        func={() => addToCart()}
+        func={() => handleCart()}
         properties={"w-60! xl:w-80!"}
       />
     </div>

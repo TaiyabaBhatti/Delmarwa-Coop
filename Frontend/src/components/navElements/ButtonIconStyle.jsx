@@ -6,7 +6,7 @@ const ButtonIconStyle = ({ func = null, children }) => {
       onClick={func}
       className={` cursor-pointer transition-transform duration-150
     hover:brightness-150
-    hover:shadow-lg
+   
     active:scale-90
 
     `}
