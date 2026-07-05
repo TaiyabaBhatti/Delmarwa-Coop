@@ -75,10 +75,12 @@ export const loginUser = asyncHandler(async (req, res) => {
   const loggedInUser = await User.findById(userInDb._id).select(
     "-password -refreshToken"
   );
+
+  const isProduction = process.env.NODE_ENV === "production";
   const options = {
     httpOnly: true,
-    secure: false,
-    sameSite: "none",
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
   };
   return res
     .status(CREATED_CODE)
