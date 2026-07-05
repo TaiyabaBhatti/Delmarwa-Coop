@@ -5,5 +5,5 @@ export const getSingleProduct = async (productId) => {
 };
 
 export const getAllProducts = async () => {
-  return await axiosInstance.get("/api/products/get-all-products", {});
+  return await axiosInstance.get("/api/products", {});
 };

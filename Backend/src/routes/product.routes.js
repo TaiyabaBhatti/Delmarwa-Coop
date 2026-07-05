@@ -7,7 +7,7 @@ import { verifyJWTToken } from "../middlewares/auth.middleware.js";
 
 const productRoute = express.Router();
 
-productRoute.get("/get-all-products", getAllProducts);
+productRoute.get("", getAllProducts);
 productRoute.get("/:productId", getSingleProduct);
 
 export default productRoute;
