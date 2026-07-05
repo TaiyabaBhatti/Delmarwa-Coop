@@ -1,7 +1,6 @@
 import { SERVER_ERROR_CODE } from "../constant.js";
 import { User } from "../modles/user.model.js";
 import ApiError from "./ApiError.class.js";
-
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -9,13 +8,13 @@ const generateAccessAndRefreshTokens = async (userId) => {
     const refreshToken = await user.generateRefreshToken();
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
-  
+
     // console.log(`Access token: ${accessToken}, Refresh Token: ${refreshToken}`)
- 
-return {accessToken, refreshToken}
-} catch (error) {
+
+    return { accessToken, refreshToken };
+  } catch (error) {
     throw new ApiError(SERVER_ERROR_CODE, `Server issue: ${error}`);
   }
 };
 
-export default generateAccessAndRefreshTokens
+export default generateAccessAndRefreshTokens;

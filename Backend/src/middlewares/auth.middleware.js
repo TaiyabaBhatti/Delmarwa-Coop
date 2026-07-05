@@ -20,6 +20,7 @@ export const verifyJWTToken = async (req, _, next) => {
     if (!user) {
       throw new ApiError(UNAUTHORIZED_CODE, "Invalid Token");
     }
+    console.log(req.cookies);
     req.user = user;
     next();
   } catch (error) {

@@ -1,19 +1,18 @@
+import Header from "./components/Header.jsx";
 
-
-import Header from "./components/Header.jsx"
-
-import Footer from "./components/Footer.jsx"
-import { AppRoutes } from "./routes/AppRoutes.jsx"
-
+import Footer from "./components/Footer.jsx";
+import { AppRoutes } from "./routes/AppRoutes.jsx";
 
 function App() {
   return (
-<>
-<Header/>
-<AppRoutes/>
-<Footer/>
-</>
-  )
+    <>
+      <Header />
+
+      <AppRoutes />
+
+      <Footer />
+    </>
+  );
 }
 
-export default App
+export default App;
