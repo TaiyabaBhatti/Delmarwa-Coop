@@ -13,7 +13,7 @@ const ProductCard = ({ data }) => {
       to={APP_ROUTES_NAME.productDetail.replace(":productId", data._id)}
       className={""}
     >
-      <div className="rounded-lg shadow-sm hover:shadow-md transition overflow-hidden border border-athens-gray min-w-3xs pt-2">
+      <div className="rounded-lg shadow-sm hover:shadow-md transition overflow-hidden flex flex-col border border-athens-gray min-w-3xs pt-2 min-h-96 justify-between">
         {/* product image */}
 
         <ImageStateBlock
@@ -24,7 +24,7 @@ const ProductCard = ({ data }) => {
         />
 
         {/* product details */}
-        <div className="p-6 space-y-3">
+        <div className="p-6 space-y-3 flex flex-col justify-between">
           <div>
             <h1 className="capitalize text-lg leading-6 font-bold text-blue-zodiac">
               {data.title}
@@ -33,19 +33,22 @@ const ProductCard = ({ data }) => {
               {data.brandName}
             </h6>
           </div>
-          <div className="flex flex-row justify-between items-center">
-            <p className="font-extrabold text-2xl text-tall-poppy">
-              ${data.price}
-            </p>
-            <div className="text-buttercup text-sm flex flex-row items-center gap-x-1.5">
-              <FaStar className="font-black" />
-              <span className="font-semibold">{data.rating}</span>
-            </div>
-          </div>
 
-          <button className="uppercase rounded-sm bg-tall-poppy text-white text-sm font-bold w-full py-3 px-5 cursor-pointer">
-            Add to cart
-          </button>
+          <div className="space-y-3">
+            <div className="flex flex-row justify-between items-center">
+              <p className="font-extrabold text-2xl text-tall-poppy">
+                ${data.price}
+              </p>
+              <div className="text-buttercup text-sm flex flex-row items-center gap-x-1.5">
+                <FaStar className="font-black" />
+                <span className="font-semibold">{data.rating}</span>
+              </div>
+            </div>
+
+            <button className="uppercase rounded-sm bg-tall-poppy text-white text-sm font-bold w-full py-3 px-5 cursor-pointer">
+              Add to cart
+            </button>
+          </div>
         </div>
       </div>
     </NavLink>

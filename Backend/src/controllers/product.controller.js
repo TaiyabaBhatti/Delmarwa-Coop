@@ -5,7 +5,44 @@ import ApiResponse from "../utility/ApiResponse.class.js";
 import { asyncHandler } from "../utility/asyncHandler.js";
 
 export const getAllProducts = asyncHandler(async (req, res) => {
-  const productsFromDB = await Product.find();
+  // query parameter implementations
+  // search
+  const { search, rating, minPrice, maxPrice } = req.query;
+  let filters = {};
+  let productsFromDB;
+  if (search) {
+    filters.title = {
+      $regex: search,
+      $options: "i",
+    };
+  }
+
+  if (rating) {
+    filters.rating = {
+      $gte: Number(rating),
+    };
+  }
+
+  if (minPrice || maxPrice) {
+    filters.price = {};
+
+    if (minPrice) {
+      filters.price.$gte = Number(minPrice);
+    }
+
+    if (maxPrice) {
+      filters.price.$lte = Number(maxPrice);
+    }
+  } else {
+    productsFromDB = await Product.find();
+  }
+
+  // actions in databse
+  //ignore case - i
+  // find search in this title
+  console.log(filters);
+  productsFromDB = await Product.find(filters);
+
   if (productsFromDB.length === 0) {
     return res
       .status(SUCCESS_CODE)

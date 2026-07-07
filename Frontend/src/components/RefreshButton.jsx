@@ -4,9 +4,15 @@ import { IoIosRefreshCircle } from "react-icons/io";
 
 const RefreshButton = ({ func }) => {
   return (
-    <ButtonIconStyle func={func}>
-      <IoIosRefreshCircle className="text-blue-zodiac text-lg font-black" />
-    </ButtonIconStyle>
+    <button
+      onClick={func}
+      className={` cursor-pointer transition-transform duration-150
+    hover:brightness-150
+    active:scale-90
+    `}
+    >
+      <IoIosRefreshCircle className="text-blue-zodiac  text-2xl font-black" />
+    </button>
   );
 };
 
