@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 import InputErrors from "./InputErrors";
 import Loading from "../../components/StatesShowing.jsx/Loading";
@@ -10,6 +10,7 @@ import ButtonSubmit from "./ButtonSubmit";
 import ButtonEffect from "./ButtonEffect";
 
 const LoginForm = ({ setAccountToggle }) => {
+  const location = useLocation();
   const {
     handleSubmit,
     register,
@@ -21,6 +22,8 @@ const LoginForm = ({ setAccountToggle }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errordesc, setErrorDesc] = useState("");
+  console.log(location);
+  const userFromPage = location?.state?.from?.pathname || "/";
   const formLogin = async (data) => {
     try {
       setLoading(true);
@@ -28,7 +31,7 @@ const LoginForm = ({ setAccountToggle }) => {
       //   reset();
       console.log("Login Success");
       setCurrUser(response.data.data);
-      navigate("/");
+      navigate(userFromPage, { replace: true });
     } catch (error) {
       setErrorDesc(`${error.response.data.message} ${error.status}`);
     } finally {

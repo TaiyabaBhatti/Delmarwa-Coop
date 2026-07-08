@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa6";
 import StockBlock from "./StockBlock";
 import { CartContext } from "../../context/cartContext";
 import { AuthContext } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { APP_ROUTES_NAME } from "../../utils/appRoutesNames";
 import ButtonSubmit from "../account/ButtonSubmit";
 
@@ -11,6 +11,8 @@ const ProductBio = ({ data }) => {
   const { addToCart } = useContext(CartContext);
   const { loginStatus } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
 
   const handleCart = () => {
     if (loginStatus) {
@@ -23,7 +25,11 @@ const ProductBio = ({ data }) => {
       });
       navigate(APP_ROUTES_NAME.cartPage);
     } else {
-      navigate(APP_ROUTES_NAME.accountPage);
+      navigate(APP_ROUTES_NAME.accountPage, {
+        state: {
+          from: location,
+        },
+      });
     }
   };
 

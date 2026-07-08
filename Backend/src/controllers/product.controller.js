@@ -28,8 +28,8 @@ export const getAllProducts = asyncHandler(async (req, res) => {
 
   if (productsFromDB.length === 0) {
     return res
-      .status(SUCCESS_CODE)
-      .json(new ApiResponse(SUCCESS_CODE, [], "No products Found"));
+      .status(NOT_FOUND_CODE)
+      .json(new ApiResponse(NOT_FOUND_CODE, [], "No products Found"));
   }
 
   return res

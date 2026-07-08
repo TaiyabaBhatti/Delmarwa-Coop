@@ -9,7 +9,6 @@ const CartProtectedRoute = ({ children }) => {
   if (cartItems.length === 0) {
     return <Navigate to={APP_ROUTES_NAME.cartPage} replace />;
   }
-
   return children;
 };
 

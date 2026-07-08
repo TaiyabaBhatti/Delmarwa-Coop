@@ -11,7 +11,6 @@ const userRoute = express.Router();
 
 userRoute.post("/login", loginUser);
 userRoute.post("/register", registerUser);
-
 // protected routes
 userRoute.get("/logout", verifyJWTToken, logoutUser);
 userRoute.get("/verify-token", verifyJWTToken, (req, res) => {
