@@ -3,45 +3,28 @@ import { Product } from "../modles/product.model.js";
 import ApiError from "../utility/ApiError.class.js";
 import ApiResponse from "../utility/ApiResponse.class.js";
 import { asyncHandler } from "../utility/asyncHandler.js";
+import { setFiltersQuery } from "../utility/catalougeFilters.js";
+import { setSortQueries } from "../utility/catalougeSort.js";
 
 export const getAllProducts = asyncHandler(async (req, res) => {
   // query parameter implementations
   // search
-  const { search, rating, minPrice, maxPrice } = req.query;
-  let filters = {};
+  const { search, rating, minPrice, maxPrice, sort } = req.query;
+  let filters = setFiltersQuery({ search, rating, minPrice, maxPrice });
+  let sortValues = setSortQueries(sort);
   let productsFromDB;
-  if (search) {
-    filters.title = {
-      $regex: search,
-      $options: "i",
-    };
-  }
-
-  if (rating) {
-    filters.rating = {
-      $gte: Number(rating),
-    };
-  }
-
-  if (minPrice || maxPrice) {
-    filters.price = {};
-
-    if (minPrice) {
-      filters.price.$gte = Number(minPrice);
-    }
-
-    if (maxPrice) {
-      filters.price.$lte = Number(maxPrice);
-    }
-  } else {
-    productsFromDB = await Product.find();
-  }
 
   // actions in databse
-  //ignore case - i
-  // find search in this title
-  console.log(filters);
-  productsFromDB = await Product.find(filters);
+
+  if (filters) {
+    productsFromDB = await Product.find(filters);
+  }
+  if (sort) {
+    productsFromDB = await Product.find(filters).sort(sortValues);
+  }
+  if (!filters) {
+    productsFromDB = await Product.find();
+  }
 
   if (productsFromDB.length === 0) {
     return res

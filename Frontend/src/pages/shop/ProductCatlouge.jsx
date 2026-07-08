@@ -7,13 +7,16 @@ import Wrapper from "../../components/Wrapper";
 import { getErrorMessage } from "../../utils/getErrorMessage";
 import RefreshButton from "../../components/RefreshButton";
 import { useSearchParams } from "react-router-dom";
+import SortResultsBlock from "./SortResultsBlock";
 
 const ProductCatlouge = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const existedParams = new URLSearchParams(searchParams);
   const search = searchParams.get("search");
   const minPrice = searchParams.get("minPrice");
   const maxPrice = searchParams.get("maxPrice");
   const rating = searchParams.get("rating");
+  const sort = searchParams.get("sort");
   // ui states for showing
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -28,8 +31,8 @@ const ProductCatlouge = () => {
         minPrice,
         maxPrice,
         rating,
+        sort,
       });
-      console.log(search);
       const productData = response.data.data;
       setProducts(productData);
       setErrorMessage(null);
@@ -41,11 +44,17 @@ const ProductCatlouge = () => {
   };
   useEffect(() => {
     getProducts();
-  }, [search, minPrice, maxPrice, rating]);
-
+  }, [search, minPrice, maxPrice, rating, sort]);
   return (
-    <section className="">
-      <RefreshButton func={getProducts} />
+    <section className="w-full">
+      <div className="relative flex justify-between items-center z-50">
+        <RefreshButton func={getProducts} />
+        <SortResultsBlock
+          existedParams={existedParams}
+          setSearchParams={setSearchParams}
+        />
+      </div>
+
       <main className="flex-1 space-y-2 relative z-30">
         {/* loading */}
         {loading && <Loading text={"Getting Products..."} />}

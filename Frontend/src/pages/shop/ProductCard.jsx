@@ -13,7 +13,7 @@ const ProductCard = ({ data }) => {
       to={APP_ROUTES_NAME.productDetail.replace(":productId", data._id)}
       className={""}
     >
-      <div className="rounded-lg shadow-sm hover:shadow-md transition overflow-hidden flex flex-col border border-athens-gray min-w-3xs pt-2 min-h-96 justify-between">
+      <div className="rounded-lg shadow-sm hover:shadow-md transition overflow-hidden flex flex-col border border-athens-gray max-w-md lg:min-w-3xs pt-2 min-h-96 justify-between">
         {/* product image */}
 
         <ImageStateBlock

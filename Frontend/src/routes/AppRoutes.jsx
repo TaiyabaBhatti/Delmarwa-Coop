@@ -9,11 +9,12 @@ import OrderCreationSuccessPage from "../pages/checkout/OrderCreationSuccessPage
 import NotFound from "../pages/NotFound";
 import CartProtectedRoute from "./CartProtectedRoute";
 import ProtectedRoute from "./ProtectedRoute";
+import Home from "../pages/Home";
 
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={APP_ROUTES_NAME.homePage} element={<ShopPage />} />
+      <Route path={APP_ROUTES_NAME.homePage} element={<Home />} />
       <Route path={APP_ROUTES_NAME.productsPage} element={<ShopPage />} />
       <Route
         path={APP_ROUTES_NAME.productDetail}
