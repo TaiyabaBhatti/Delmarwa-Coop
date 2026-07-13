@@ -5,6 +5,11 @@ import { addressSchema } from "./address.model.js";
 
 const userSchema = new Schema(
   {
+    role: {
+      type: String,
+      enum: ["customer", "admin"],
+      default: "customer",
+    },
     username: {
       type: String,
       required: true,

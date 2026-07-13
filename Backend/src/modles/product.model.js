@@ -25,7 +25,7 @@ const productSchema = new Schema(
         },
       ],
     // multile images
-    image: [
+    imageUrls: [
       {
         type: String,
       },
@@ -42,10 +42,10 @@ const productSchema = new Schema(
       default: 0,
       type: Number,
     },
-    category:{
-      type:Schema.Types.ObjectId,
-      ref:"Category"
-    }
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+    },
   },
   { timestamps: true }
 );

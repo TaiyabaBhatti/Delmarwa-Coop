@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const Loading = ({text}) => {
-    return (
-        <div className="w-full mt-10">
-          <p className="text-center font-bold animate-pulse">
-            {text} ...
-          </p>
-        </div>
-    );
-}
+const Loading = ({ text, properties }) => {
+  return (
+    <div className={`w-full mt-10 ${properties}`}>
+      <p className="text-center text-blue-zodiac/70 font-bold animate-pulse">
+        {text} ...
+      </p>
+    </div>
+  );
+};
 
 export default Loading;

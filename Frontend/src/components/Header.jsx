@@ -10,9 +10,14 @@ import { TiThMenu } from "react-icons/ti";
 import Menu from "./navElements/Menu";
 import Backdrop from "./Backdrop";
 import ButtonIconStyle from "./navElements/ButtonIconStyle";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
+  const hideHeader = location.pathname.startsWith("/admin-panel");
   const [menuState, setMenuState] = useState(false);
+  if (hideHeader) return null;
 
   useEffect(() => {
     console.log("hello");
@@ -25,7 +30,7 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full relative z-40 ${menuState ? "" : "overflow-hidden"}`}
+      className={` w-full realtive  ${menuState ? "" : "overflow-hidden"}`}
     >
       {/* upper */}
       <div className="grid w-full items-center p-0 sm:px-14 sm:py-3.5  justify-center max-[1129px]:justify-between  gap-x-8 gap-y-4 min-[1130px]:grid-cols-[auto_auto_auto] max-[1129px]:grid-cols-[auto_auto]">
@@ -39,7 +44,7 @@ const Header = () => {
         <div className=" flex p-3.5 sm:p-0 flex-row gap-x-2 md:gap-x-4 items-center justify-self-end">
           <AccountBlock />
           <CartBlock />
-          <div className="block md:hidden">
+          <div className="block md:hidden ">
             <ButtonIconStyle func={() => setMenuState(true)}>
               {" "}
               <TiThMenu className="text-blue-zodiac text-lg font-black" />

@@ -10,20 +10,27 @@ import NotFound from "../pages/NotFound";
 import CartProtectedRoute from "./CartProtectedRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "../pages/Home";
+import AdminPage from "../admin/AdminPage";
+import Dashboard from "../admin/dashboard/Dashboard";
+import CreateProduct from "../admin/crud/create/CreateProduct";
+import Shop from "../pages/shop/Shop";
 
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={APP_ROUTES_NAME.homePage} element={<Home />} />
-      <Route path={APP_ROUTES_NAME.productsPage} element={<ShopPage />} />
+      <Route path="/" element={<Home />} />
+
+      {/* productss */}
+      <Route path="/shop" element={<Shop />}>
+        <Route index element={<ShopPage />} />
+        <Route path="products" element={<ShopPage />} />
+        <Route path={"products/:productId"} element={<ProductDetailPage />} />
+      </Route>
+
+      <Route path={"/account"} element={<AccountPage />} />
+      <Route path={"/cart"} element={<CartPage />} />
       <Route
-        path={APP_ROUTES_NAME.productDetail}
-        element={<ProductDetailPage />}
-      />
-      <Route path={APP_ROUTES_NAME.accountPage} element={<AccountPage />} />
-      <Route path={APP_ROUTES_NAME.cartPage} element={<CartPage />} />
-      <Route
-        path={APP_ROUTES_NAME.checkoutPage}
+        path={"/checkout"}
         element={
           <CartProtectedRoute>
             <CheckOutPage />
@@ -31,13 +38,22 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path={APP_ROUTES_NAME.orderCreationSuccessPage}
+        path={"/order-creation-success/:orderId"}
         element={
           <ProtectedRoute>
             <OrderCreationSuccessPage />
           </ProtectedRoute>
         }
       />
+      <Route path={"admin-panel"} element={<AdminPage />}>
+        <Route index element={<Dashboard />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="create-product" element={<CreateProduct />} />
+
+        {/* <Route path="products" element={<ProductsPage />} />
+        <Route path="orders" element={<OrdersPage />} />
+        <Route path="users" element={<UsersPage />} /> */}
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

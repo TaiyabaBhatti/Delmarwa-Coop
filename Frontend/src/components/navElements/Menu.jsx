@@ -6,7 +6,7 @@ import ButtonIconStyle from "./ButtonIconStyle";
 const Menu = ({ setMenuState, menuState }) => {
   return (
     <div
-      className={`space-y-7 absolute z-50 right-0 top-0 w-72 min-h-screen bg-white p-5 transition-transform duration-300 ease-in-out ${
+      className={`space-y-7 fixed z-50 right-0 top-0 w-72 min-h-screen bg-white p-5 transition-transform duration-300 block md:hidden ease-in-out ${
         menuState ? "translate-x-0" : "translate-x-full"
       }`}
     >
