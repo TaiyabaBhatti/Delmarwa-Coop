@@ -36,6 +36,7 @@ const ProductCatlouge = () => {
       const productData = response.data.data;
       setProducts(productData);
       setErrorMessage(null);
+      console.log(productData);
     } catch (error) {
       setErrorMessage(getErrorMessage(error));
     } finally {

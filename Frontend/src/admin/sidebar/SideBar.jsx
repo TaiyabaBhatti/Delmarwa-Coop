@@ -3,7 +3,7 @@ import { RxDashboard } from "react-icons/rx";
 import { GrDocumentPerformance } from "react-icons/gr";
 import { SiOpenmediavault } from "react-icons/si";
 import { IoPeople } from "react-icons/io5";
-import dashboardAsideImg from "../assets/images/dashbaord-aside-image.jpg";
+
 import { HiMiniBuildingStorefront } from "react-icons/hi2";
 import TabItem from "../TabItem";
 import AccountBlock from "../../components/navElements/AccountBlock";

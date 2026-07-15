@@ -26,7 +26,6 @@ export const AppRoutes = () => {
         <Route path="products" element={<ShopPage />} />
         <Route path={"products/:productId"} element={<ProductDetailPage />} />
       </Route>
-
       <Route path={"/account"} element={<AccountPage />} />
       <Route path={"/cart"} element={<CartPage />} />
       <Route

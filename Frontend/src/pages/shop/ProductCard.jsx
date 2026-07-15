@@ -7,7 +7,8 @@ import { APP_ROUTES_NAME } from "../../utils/appRoutesNames";
 import ImageStateBlock from "../../components/StatesShowing.jsx/ImageStateBlock";
 
 const ProductCard = ({ data }) => {
-  // console.log(data);
+  const tempImagesFunction =
+    data.imageUrls.length === 0 ? data.image[0] : data.imageUrls[0];
   return (
     <NavLink
       to={APP_ROUTES_NAME.productDetail.replace(":productId", data._id)}
@@ -17,7 +18,7 @@ const ProductCard = ({ data }) => {
         {/* product image */}
 
         <ImageStateBlock
-          src={data.image[0]}
+          src={tempImagesFunction}
           alt={data.title}
           parentProperties={"h-40 relative"}
           childProperties={"h-40 object-cover w-full"}

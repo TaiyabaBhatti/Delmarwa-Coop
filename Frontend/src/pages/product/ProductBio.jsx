@@ -20,7 +20,7 @@ const ProductBio = ({ data }) => {
         productId: data._id,
         title: data.title,
         price: data.price,
-        image: data.image[0],
+        image: data.imageUrls.length === 0 ? data.image[0] : data.imageUrls[0],
         stockCount: data.stockCount,
       });
       navigate(APP_ROUTES_NAME.cartPage);
