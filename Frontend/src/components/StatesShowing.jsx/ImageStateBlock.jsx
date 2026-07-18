@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ImageState from "./ImageState";
 
-const ImageStateBlock = ({ src,alt,parentProperties,childProperties }) => {
+const ImageStateBlock = ({ src, alt, parentProperties, childProperties }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -21,8 +21,8 @@ const ImageStateBlock = ({ src,alt,parentProperties,childProperties }) => {
           </p>
         </div>
       )}
-       {!loading && !error && ( 
-         <ImageState
+      {!loading && !error && (
+        <ImageState
           src={src}
           alt={alt}
           properties={childProperties}
@@ -33,8 +33,7 @@ const ImageStateBlock = ({ src,alt,parentProperties,childProperties }) => {
             setError(true);
           }}
         />
-   
-       )} 
+      )}
     </div>
   );
 };

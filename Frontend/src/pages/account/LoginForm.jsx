@@ -39,10 +39,10 @@ const LoginForm = ({ setAccountToggle }) => {
     }
   };
   return (
-    <div className="flex-1 space-y-9 rounded-lg bg-white border border-athens-gray p-9">
+    <div className="flex-1 space-y-7 xs:space-y-9 rounded-lg bg-white border border-athens-gray p-9">
       {/* display header*/}
 
-      <h1 className="text-blue-zodiac capitalize  text-3xl font-bold">
+      <h1 className="text-blue-zodiac capitalize  text-2xl xs:text-3xl font-bold">
         sign in
       </h1>
       {/* {errordesc && <ErrorNotif text={errordesc} />} */}

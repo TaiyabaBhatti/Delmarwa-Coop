@@ -3,7 +3,7 @@ import Wrapper from "../components/Wrapper";
 
 const NotFound = () => {
   return (
-    <section className="bg-gray-100">
+    <section className="bg-gray-100 h-screen">
       <Wrapper properties="py-12">
         <div>Page not found</div>
       </Wrapper>

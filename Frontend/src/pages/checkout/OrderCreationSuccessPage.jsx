@@ -17,10 +17,8 @@ const OrderCreationSuccessPage = () => {
   const { setCartItems } = useContext(CartContext);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const { orderId } = useParams();
   const navigate = useNavigate();
-
+  const { orderId } = useParams();
   const [details, setDetails] = useState(null);
   useEffect(() => {
     const fetchingOrderDetails = async () => {
@@ -38,40 +36,30 @@ const OrderCreationSuccessPage = () => {
     fetchingOrderDetails();
   }, [orderId, navigate]);
 
-  useEffect(() => {
-    setCartItems([]);
-    const cartKey = `cart_${currUser?._id}`;
-    localStorage.setItem(cartKey, JSON.stringify([]));
-  }, []);
   return (
-    <section className="bg-gray-100">
-      <Wrapper properties="py-12">
-        <div className=" rounded-lg bg-white border border-athens-gray p-9 max-w-2xl space-y-6">
-          {/* error */}
-          {errorMessage && (
-            <StateMessage text={errorMessage} properties={"text-tall-poppy "} />
-          )}
-          {/* loading */}
-          {loading && <Loading text={"Getting Details..."} />}
+    <div className=" rounded-lg bg-white border border-athens-gray p-9 max-w-2xl space-y-6 m-auto">
+      {/* error */}
+      {errorMessage && (
+        <StateMessage text={errorMessage} properties={"text-tall-poppy "} />
+      )}
+      {/* loading */}
+      {loading && <Loading text={"Getting Details..."} />}
 
-          {/* exists */}
-          {!loading && !errorMessage && details && (
-            <>
-              <div className="flex flex-col gap-y-3 items-center">
-                {" "}
-                <IoMdCheckmarkCircle className="w-20 h-20 text-green-gaze" />
-                <h4 className="text-3xl font-bold">Order Confirmed</h4>
-                <p className="text-center">
-                  Thanku for your purchase. your order {orderId} has been
-                  received.
-                </p>
-              </div>
-              <ConfirmedOrderDetails orderDetails={details} />
-            </>
-          )}
-        </div>
-      </Wrapper>
-    </section>
+      {/* exists */}
+      {!loading && !errorMessage && details && (
+        <>
+          <div className="flex flex-col gap-y-3 items-center">
+            {" "}
+            <IoMdCheckmarkCircle className="w-20 h-20 text-green-gaze" />
+            <h4 className="text-3xl font-bold">Order Confirmed</h4>
+            <p className="text-center">
+              Thanku for your purchase. your order {orderId} has been received.
+            </p>
+          </div>
+          <ConfirmedOrderDetails orderDetails={details} />
+        </>
+      )}
+    </div>
   );
 };
 

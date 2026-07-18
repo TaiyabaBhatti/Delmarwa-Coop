@@ -26,8 +26,8 @@ const ProductCard = ({ data }) => {
 
         {/* product details */}
         <div className="p-6 space-y-3 flex flex-col justify-between">
-          <div>
-            <h1 className="capitalize text-lg leading-6 font-bold text-blue-zodiac">
+          <div className="space-y-1">
+            <h1 className="capitalize text-base xs:text-lg leading-4 xs:leading-6 font-bold text-blue-zodiac">
               {data.title}
             </h1>
             <h6 className="uppercase font-medium text-xs text-scarpa-flow">
@@ -37,7 +37,7 @@ const ProductCard = ({ data }) => {
 
           <div className="space-y-3">
             <div className="flex flex-row justify-between items-center">
-              <p className="font-extrabold text-2xl text-tall-poppy">
+              <p className="font-extrabold text-lg xs:text-2xl text-tall-poppy">
                 ${data.price}
               </p>
               <div className="text-buttercup text-sm flex flex-row items-center gap-x-1.5">

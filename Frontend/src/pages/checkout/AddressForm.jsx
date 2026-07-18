@@ -44,10 +44,9 @@ const AddressForm = () => {
       const response = await createOrder(payload);
       console.log(response.data.data);
       const orderId = response.data.data.orderId;
-      navigate(
-        APP_ROUTES_NAME.orderCreationSuccessPage.replace(":orderId", orderId)
-      );
+      navigate(APP_ROUTES_NAME.checkoutPayment.replace(":orderId", orderId));
     } catch (error) {
+      console.log(error);
       setErrorMessage(getErrorMessage(error));
     } finally {
       setLoading(false);
@@ -62,125 +61,125 @@ const AddressForm = () => {
   }, [currUser, reset]);
 
   return (
-    <section>
-      <div className="flex-1 space-y-9 rounded-lg bg-white border border-athens-gray p-9 max-w-2xl">
-        {/* display header*/}
+    <div className="flex-1 space-y-9 rounded-lg bg-white border border-athens-gray p-9 max-w-2xl m-auto">
+      {/* display header*/}
 
-        <h1 className="text-blue-zodiac capitalize  text-3xl font-bold">
-          Address Form
-        </h1>
-        {errorMessage && (
-          <StateMessage text={errorMessage} properties={"text-tall-poppy "} />
-        )}
-        <div className="relative space-y-4">
-          <form
-            onSubmit={handleSubmit(formAddressAndCreateOrder)}
-            className="space-y-5"
-          >
-            <div className="flex items-center gap-x-2.5">
-              <div className="w-full!">
-                <InputField
-                  labelText={"First Name"}
-                  labelFor={"firstName"}
-                  message={"FirstName is required"}
-                  type={"text"}
-                  placeholder={"John"}
-                  register={register}
-                  errors={errors}
-                />
-                <InputErrors labelFor={"firstName"} errors={errors} />
-              </div>
-              <div className="w-full!">
-                <InputField
-                  labelText={"Last Name"}
-                  labelFor={"lastName"}
-                  message={"LastName is required"}
-                  type={"text"}
-                  placeholder={"Den"}
-                  register={register}
-                  errors={errors}
-                />
-                <InputErrors labelFor={"lastName"} errors={errors} />
-              </div>
-            </div>
-            <div>
+      <h1 className="text-blue-zodiac capitalize  text-3xl font-bold">
+        Address Form
+      </h1>
+      {errorMessage && (
+        <StateMessage text={errorMessage} properties={"text-tall-poppy "} />
+      )}
+      <div className="relative space-y-4">
+        <form
+          onSubmit={handleSubmit(formAddressAndCreateOrder)}
+          className="space-y-5"
+        >
+          <div className="flex items-center gap-2.5 flex-col xs:flex-row">
+            <div className="w-full!">
               <InputField
-                labelText={"Street"}
-                labelFor={"street"}
-                message={"Street Address is required"}
+                labelText={"First Name"}
+                labelFor={"firstName"}
+                message={"FirstName is required"}
                 type={"text"}
-                placeholder={"123 farm house land"}
+                placeholder={"John"}
                 register={register}
                 errors={errors}
               />
-              <InputErrors labelFor={"street"} errors={errors} />
+              <InputErrors labelFor={"firstName"} errors={errors} />
             </div>
-            <div className="flex items-center gap-x-2.5">
-              <div className="w-full!">
-                <InputField
-                  labelText={"City"}
-                  labelFor={"city"}
-                  message={"city is required"}
-                  type={"text"}
-                  placeholder={"karachi"}
-                  register={register}
-                  errors={errors}
-                />
-                <InputErrors labelFor={"city"} errors={errors} />
-              </div>
-              <div className="w-full!">
-                <InputField
-                  labelText={"State"}
-                  labelFor={"state"}
-                  message={"State is required"}
-                  type={"text"}
-                  placeholder={"Pakistan"}
-                  register={register}
-                  errors={errors}
-                />
-                <InputErrors labelFor={"state"} errors={errors} />
-              </div>
-              <div className="w-full!">
-                <InputField
-                  labelText={"Postal Code"}
-                  labelFor={"postalCode"}
-                  message={"Postal code is required"}
-                  type={"text"}
-                  placeholder={"12346"}
-                  register={register}
-                  errors={errors}
-                />
-                <InputErrors labelFor={"postalCode"} errors={errors} />
-              </div>
-            </div>
-            <div>
+            <div className="w-full!">
               <InputField
-                labelText={"Phone"}
-                labelFor={"phone"}
-                message={"Phone is required"}
+                labelText={"Last Name"}
+                labelFor={"lastName"}
+                message={"LastName is required"}
                 type={"text"}
-                placeholder={"+92 "}
+                placeholder={"Den"}
                 register={register}
                 errors={errors}
               />
-              <InputErrors labelFor={"phone"} errors={errors} />
+              <InputErrors labelFor={"lastName"} errors={errors} />
             </div>
-            <div className="grid grid-cols-2">
-              <ButtonIconStyle>
-                <NavLink
-                  to={APP_ROUTES_NAME.cartPage}
-                  className="text-sm font-bold text-blue-zodiac uppercase flex items-center gap-x-1"
-                >
-                  <FaArrowLeft />
-                  <span>Return to Cart</span>
-                </NavLink>
-              </ButtonIconStyle>
+          </div>
+          <div>
+            <InputField
+              labelText={"Street"}
+              labelFor={"street"}
+              message={"Street Address is required"}
+              type={"text"}
+              placeholder={"123 farm house land"}
+              register={register}
+              errors={errors}
+            />
+            <InputErrors labelFor={"street"} errors={errors} />
+          </div>
+          <div className="flex items-center gap-2.5 flex-col xs:flex-row">
+            <div className="w-full!">
+              <InputField
+                labelText={"City"}
+                labelFor={"city"}
+                message={"city is required"}
+                type={"text"}
+                placeholder={"karachi"}
+                register={register}
+                errors={errors}
+              />
+              <InputErrors labelFor={"city"} errors={errors} />
+            </div>
+            <div className="w-full!">
+              <InputField
+                labelText={"State"}
+                labelFor={"state"}
+                message={"State is required"}
+                type={"text"}
+                placeholder={"Pakistan"}
+                register={register}
+                errors={errors}
+              />
+              <InputErrors labelFor={"state"} errors={errors} />
+            </div>
+            <div className="w-full!">
+              <InputField
+                labelText={"Postal Code"}
+                labelFor={"postalCode"}
+                message={"Postal code is required"}
+                type={"text"}
+                placeholder={"12346"}
+                register={register}
+                errors={errors}
+              />
+              <InputErrors labelFor={"postalCode"} errors={errors} />
+            </div>
+          </div>
+          <div>
+            <InputField
+              labelText={"Phone"}
+              labelFor={"phone"}
+              message={"Phone is required"}
+              type={"text"}
+              placeholder={"+92 "}
+              register={register}
+              errors={errors}
+            />
+            <InputErrors labelFor={"phone"} errors={errors} />
+          </div>
+          <div className="flex gap-4 justify-between flex-col-reverse xs:flex-row">
+            <ButtonIconStyle>
+              <NavLink
+                to={APP_ROUTES_NAME.cartPage}
+                className="text-sm font-bold text-blue-zodiac uppercase flex items-center gap-x-1"
+              >
+                <FaArrowLeft />
+                <span>Return to Cart</span>
+              </NavLink>
+            </ButtonIconStyle>
+            <div className="w-full xs:w-fit">
               <ButtonSubmit value={"Order Confirmed"} loading={loading} />
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -9,16 +9,14 @@ const CartPage = () => {
   const { cartItems } = useContext(CartContext);
 
   return (
-    <section className="bg-gray-100">
-      <Wrapper properties={"py-12"}>
-        <Headline itemsNo={cartItems.length} />
-        {cartItems.length != 0 ? (
-          <CartTableView />
-        ) : (
-          <StateMessage text={"Your cart is empty"} />
-        )}
-      </Wrapper>
-    </section>
+    <Wrapper properties={"bg-gray-100 py-12"}>
+      <Headline itemsNo={cartItems.length} />
+      {cartItems.length != 0 ? (
+        <CartTableView />
+      ) : (
+        <StateMessage text={"Your cart is empty"} />
+      )}
+    </Wrapper>
   );
 };
 

@@ -9,7 +9,7 @@ const AccountPage = () => {
   return (
     <section className="bg-gray-100 h-full">
       <Wrapper properties={"py-12"}>
-        <section className="flex flex-row gap-x-16">
+        <section className="flex gap-16 flex-col md:flex-row">
           {accountToggle ? (
             <LoginForm setAccountToggle={setAccountToggle} />
           ) : (

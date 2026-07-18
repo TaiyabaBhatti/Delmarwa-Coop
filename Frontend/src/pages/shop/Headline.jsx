@@ -6,11 +6,14 @@ const Headline = () => {
     <section className="bg-tea-blue border-b-4 border-tall-poppy">
       <Wrapper properties={"py-16"}>
         <div className="text-white space-y-4">
-        <h1 className="text-5xl font-bold capitalize">{SHOP_PAGE_HEADLINE_DETAILS.title}</h1>
-        <p className="text-lg font-normal">{SHOP_PAGE_HEADLINE_DETAILS.desc}</p>
-      </div>
+          <h1 className="text-4xl xs:text-5xl font-bold capitalize">
+            {SHOP_PAGE_HEADLINE_DETAILS.title}
+          </h1>
+          <p className="text-sm xs:text-lg font-normal">
+            {SHOP_PAGE_HEADLINE_DETAILS.desc}
+          </p>
+        </div>
       </Wrapper>
-      
     </section>
   );
 };

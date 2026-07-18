@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ImCross } from "react-icons/im";
 import NavigationTabs from "./NavigationTabs";
 import ButtonIconStyle from "./ButtonIconStyle";
+import Logout from "./Logout";
+import { AuthContext } from "../../context/authContext";
 
 const Menu = ({ setMenuState, menuState }) => {
+  const { fullname, loginStatus } = useContext(AuthContext);
   return (
     <div
-      className={`space-y-7 fixed z-50 right-0 top-0 w-72 min-h-screen bg-white p-5 transition-transform duration-300 block md:hidden ease-in-out ${
+      className={`space-y-7 fixed z-50 right-0 top-0 w-72 min-h-screen  bg-white p-5 transition-transform duration-300 block lg:hidden ease-in-out ${
         menuState ? "translate-x-0" : "translate-x-full"
       }`}
     >
@@ -17,6 +20,12 @@ const Menu = ({ setMenuState, menuState }) => {
         </ButtonIconStyle>
       </div>
       <NavigationTabs parentStyle={"flex flex-col"} />
+      {loginStatus && (
+        <div className="bg-blue-zodiac/20 absolute bottom-0 left-0 w-full px-5 py-4 flex flex-row justify-between">
+          <h1 className="font-bold text-blue-zodiac">{fullname}</h1>
+          <Logout />
+        </div>
+      )}
     </div>
   );
 };

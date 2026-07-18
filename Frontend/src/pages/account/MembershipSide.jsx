@@ -4,8 +4,10 @@ import { MEMBERSHIP_BENEFIT_LIST } from "../../manualData/membershipContent";
 
 const MembershipSide = () => {
   return (
-    <div className="space-y-5 flex-1">
-      <h1 className="text-3xl font-bold text-blue-zodiac">Become a Member</h1>
+    <div className="space-y-3.5 xs:space-y-5 flex-1">
+      <h1 className="text-2xl xs:text-3xl font-bold text-blue-zodiac">
+        Become a Member
+      </h1>
       <p className="font-normal text-scarpa-flow">
         Join the cooperative today and start earning dividends on your
         purchases. Membership is a one-time fee of $100.
@@ -13,7 +15,10 @@ const MembershipSide = () => {
       <ul className="text-black space-y-2.5" id="membership-benefit-list">
         {MEMBERSHIP_BENEFIT_LIST.map((item, index) => {
           return (
-            <li key={index} className="flex flex-row gap-x-2.5 items-center">
+            <li
+              key={index}
+              className="flex flex-row text-sm xs:text-base gap-x-2.5 items-center"
+            >
               <FaCheck className="text-green-gaze font-black!" />
               <span>{item}</span>
             </li>

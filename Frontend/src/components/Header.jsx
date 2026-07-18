@@ -41,20 +41,20 @@ const Header = () => {
         <SearchBlock />
 
         {/* account and cart menu icon */}
-        <div className=" flex p-3.5 sm:p-0 flex-row gap-x-2 md:gap-x-4 items-center justify-self-end">
+        <div className=" flex p-3.5 sm:p-0 flex-row gap-x-3 items-center justify-self-end">
           <AccountBlock />
           <CartBlock />
-          <div className="block md:hidden ">
+          <div className="block lg:hidden ">
             <ButtonIconStyle func={() => setMenuState(true)}>
               {" "}
-              <TiThMenu className="text-blue-zodiac text-lg font-black" />
+              <TiThMenu className="nav-icons" />
             </ButtonIconStyle>
           </div>
         </div>
       </div>
 
       {/*navigation links and drop downs*/}
-      <section className="border-t hidden  md:block border-gray-200 border-b-2 border-b-athens-gray shadow-2xs">
+      <section className="border-t hidden  lg:block border-gray-200 border-b-2 border-b-athens-gray shadow-2xs">
         <Wrapper>
           <NavigationTabs
             parentStyle={

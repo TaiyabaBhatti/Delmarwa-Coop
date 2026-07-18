@@ -18,7 +18,7 @@ const ShopPage = () => {
       <Headline />
       {/* product catelouge and filter panel */}
 
-      <section className="bg-gray-100 p-5 relative z-40 flex gap-10 flex-row">
+      <section className="bg-gray-100 p-5 relative z-40 flex gap-6 xs:gap-10 flex-row">
         {/* left col */}
         <FilterPanel filters={filters} setFilters={setFilters} />
         {/* right col */}

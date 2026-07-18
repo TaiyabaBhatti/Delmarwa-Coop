@@ -11,7 +11,7 @@ const CartBlock = () => {
         to={APP_ROUTES_NAME.cartPage}
         className="flex flex-row gap-x-1.5 items-center text-blue-950"
       >
-        <FaCartShopping className="text-blue-zodiac text-lg font-black" />
+        <FaCartShopping className="nav-icons" />
         {/* <p className="text-sm font-semibold md:block hidden">$45.66</p> */}
       </NavLink>
     </ButtonIconStyle>

@@ -28,7 +28,7 @@ const Logout = () => {
   return (
     <ButtonIconStyle func={logoutUser}>
       {" "}
-      <FaSignOutAlt className=" text-2xl text-blue-zodiac font-black" />
+      <FaSignOutAlt className=" nav-icons" />
     </ButtonIconStyle>
   );
 };

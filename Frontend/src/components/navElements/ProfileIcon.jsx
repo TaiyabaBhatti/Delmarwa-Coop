@@ -10,8 +10,12 @@ const ProfileIcon = ({ fullname }) => {
 
   return (
     <>
-      <div>{firstLetters}</div>
-      <Logout />
+      <div className=" border-2 border-blue-zodiac/50 rounded-full flex items-center justify-center h-7 w-7 bg-blue-zodiac">
+        <span className="text-white font-bold"> {firstLetters}</span>
+      </div>
+      <div className="hidden lg:block">
+        <Logout />
+      </div>
     </>
   );
 };

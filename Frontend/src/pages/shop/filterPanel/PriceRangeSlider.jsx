@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FilterSection from "./FilterSection";
 import FilterHeading from "./FilterHeading";
-import DropDownBlock from "./DropDownBlock";
+import DropDownBlock from "../../../components/DropDownBlock";
 import { useSearchParams } from "react-router-dom";
 
 const PriceRangeSlider = ({ priceRange, setFilters }) => {

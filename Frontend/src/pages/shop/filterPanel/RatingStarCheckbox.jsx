@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ratingsData from "../../../manualData/ratings.json";
 import FilterSection from "./FilterSection";
 import FilterHeading from "./FilterHeading";
-import DropDownBlock from "./DropDownBlock";
+import DropDownBlock from "../../../components/DropDownBlock";
 import { useSearchParams } from "react-router-dom";
 
 const RatingStarCheckbox = ({ ratingStars, setFilters }) => {

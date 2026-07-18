@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ShopPage from "../pages/shop/ShopPage";
 import { APP_ROUTES_NAME } from "../utils/appRoutesNames";
 import ProductDetailPage from "../pages/product/ProductDetailPage";
@@ -14,6 +14,8 @@ import AdminPage from "../admin/AdminPage";
 import Dashboard from "../admin/dashboard/Dashboard";
 import CreateProduct from "../admin/crud/create/CreateProduct";
 import Shop from "../pages/shop/Shop";
+import AddressForm from "../pages/checkout/AddressForm";
+import Payment from "../pages/checkout/Payment";
 
 export const AppRoutes = () => {
   return (
@@ -35,15 +37,16 @@ export const AppRoutes = () => {
             <CheckOutPage />
           </CartProtectedRoute>
         }
-      />
-      <Route
-        path={"/order-creation-success/:orderId"}
-        element={
-          <ProtectedRoute>
-            <OrderCreationSuccessPage />
-          </ProtectedRoute>
-        }
-      />
+      >
+        <Route index element={<Navigate to="address" replace />} />
+
+        <Route path="address" element={<AddressForm />} />
+
+        <Route path="payment/:orderId" element={<Payment />} />
+
+        <Route path="success/:orderId" element={<OrderCreationSuccessPage />} />
+      </Route>
+
       <Route path={"admin-panel"} element={<AdminPage />}>
         <Route index element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />

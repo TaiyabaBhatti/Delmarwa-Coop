@@ -19,7 +19,7 @@ const OrderSummary = () => {
     });
   }, [cartItems]);
   return (
-    <section className="rounded-lg bg-white p-7 space-y-3.5">
+    <section className="rounded-lg bg-white p-7 space-y-3.5 max-w-72">
       <h2 className="text-blue-zodiac text-lg font-bold">Order Summary</h2>
       <div className="border-y border-y-athens-gray py-2 space-y-2">
         <div className="text-blue-zodiac font-normal flex items-center justify-between">

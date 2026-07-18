@@ -14,29 +14,32 @@ const CartTableView = () => {
     useContext(CartContext);
 
   return (
-    <section className="mt-5 flex gap-x-10">
-      <section className="space-y-7">
-        <table className="w-full  border-collapse overflow-hidden">
-          <thead className=" bg-white">
-            <tr className=" text-sm font-bold text-blue-zodiac text-left">
-              <th className="p-3.5">Product</th>
-              <th className="p-3.5">Price</th>
-              <th className="p-3.5">Quantity</th>
-              <th className="p-3.5">Total</th>
-            </tr>
-          </thead>
+    <section className="mt-5 flex gap-10 flex-col sm:flex-row">
+      <section className="space-y-7 min-w-0 flex-1 ">
+        <section className="overflow-x-auto w-full">
+          <table className="w-full  border-collapse min-w-87.5 sm:min-w-112.5">
+            <thead className=" bg-white">
+              <tr className=" text-sm font-bold text-blue-zodiac text-left">
+                <th className="p-3.5">Product</th>
+                <th className="py-3.5 px-1 sm:p-3.5">Price</th>
+                <th className="p-3.5">Quantity</th>
+                <th className="py-3.5 px-1 sm:p-3.5">Total</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {cartItems.map((product, index) => {
-              return (
-                <CartTableItem key={product.productId} product={product} />
-              );
-            })}
-          </tbody>
-        </table>
+            <tbody>
+              {cartItems.map((product, index) => {
+                return (
+                  <CartTableItem key={product.productId} product={product} />
+                );
+              })}
+            </tbody>
+          </table>
+        </section>
+
         <ButtonIconStyle>
           <NavLink
-            to={APP_ROUTES_NAME.homePage}
+            to={APP_ROUTES_NAME.productsPage}
             className="text-sm font-bold text-blue-zodiac uppercase flex items-center gap-x-2"
           >
             <FaArrowLeft />
@@ -44,6 +47,7 @@ const CartTableView = () => {
           </NavLink>
         </ButtonIconStyle>
       </section>
+
       <OrderSummary />
     </section>
   );

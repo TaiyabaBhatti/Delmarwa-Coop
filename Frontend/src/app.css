@@ -11,6 +11,7 @@
   --color-green-gaze: #059669;
   --breakpoint-xmd: 830px;
   --breakpoint-xsm: 700px;
+  --breakpoint-xs: 500px;
 }
 
 .active-link-effect::after {
@@ -123,4 +124,9 @@
   height: 8px;
   border: solid white;
   border-width: 0 2px 2px 0;
+}
+.nav-icons {
+  font-size: 1.5rem;
+  color: #14315c;
+  font-weight: 900;
 }

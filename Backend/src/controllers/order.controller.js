@@ -12,6 +12,7 @@ import ApiResponse from "../utility/ApiResponse.class.js";
 import { asyncHandler } from "../utility/asyncHandler.js";
 export const createOrder = asyncHandler(async (req, res) => {
   // validate address
+  console.log("Hello");
   const { address, cartItems } = req.body;
 
   if (

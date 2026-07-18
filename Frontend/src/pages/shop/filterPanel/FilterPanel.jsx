@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 
 const FilterPanel = ({ filters, setFilters }) => {
   return (
-    <aside className="sticky top-0 z-50 self-start  h-screen md:h-screen w-60 md:w-72 border-r-2 border-r-gray-200 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scroll-smooth ">
+    <aside className="sticky top-0 z-50 self-start  h-screen md:h-screen min-w-44 md:w-72 border-r-2 border-r-gray-200 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scroll-smooth ">
       {/* logo */}
       <div className="p-5 border-b-2 border-b-gray-200 ">
         {/* <PageLogo /> */}

@@ -7,14 +7,16 @@ const CartTableItem = ({ product }) => {
     useContext(CartContext);
   return (
     <tr key={product.productId}>
-      <td className="p-3.5 flex items-center gap-3.5">
+      <td className="py-3.5 pl-1 pr-2 sm:p-3.5 flex items-center gap-2 xl:gap-3.5">
         <img
           src={product?.image}
           alt="product"
-          className="w-20 h-20 object-cover rounded"
+          className="w-14 h-14  sm:w-20 sm:h-20  object-cover rounded"
         />
         <div>
-          <span className="font-bold text-blue-zodiac">{product?.title}</span>
+          <p className="font-bold text-blue-zodiac text-xs leading-tight!  xl:text-base">
+            {product?.title}
+          </p>
           <RemoveButton
             func={() => {
               removeFromCart(product.productId);
@@ -23,7 +25,9 @@ const CartTableItem = ({ product }) => {
         </div>
       </td>
 
-      <td className="p-3.5 font-normal text-blue-zodiac">${product?.price}</td>
+      <td className="py-3.5 px-1 sm:p-3.5 text-sm sm:text-base font-normal text-blue-zodiac">
+        ${product?.price}
+      </td>
 
       {/* quanity adjust buttons */}
       <td className="">
@@ -31,25 +35,25 @@ const CartTableItem = ({ product }) => {
           <button
             disabled={product.quantity === 1}
             onClick={() => decreaseQuantity(product.productId)}
-            className="px-2 py-1 h-11 w-7 bg-gray-200 cursor-pointer active:scale-105 disabled:opacity-60
+            className=" h-8 w-5 sm:h-11 sm:w-7 bg-gray-200 cursor-pointer active:scale-105 disabled:opacity-60
     disabled:cursor-not-allowed"
           >
             -
           </button>
-          <span className="bg-white h-11 w-10 p-3 text-center border-x border-x-athens-gray">
+          <span className="bg-white h-8 w-8 p-1 sm:h-11 sm:w-10 text-center border-x border-x-athens-gray">
             {product?.quantity}
           </span>
           <button
             disabled={product.quantity === product.stockCount}
             onClick={() => increaseQuantity(product.productId)}
-            className="px-2 py-1 h-11 w-7 bg-gray-200 cursor-pointer active:scale-105 disabled:opacity-60
+            className="h-8 w-5 sm:h-11 sm:w-7 bg-gray-200 cursor-pointer active:scale-105 disabled:opacity-60
     disabled:cursor-not-allowed"
           >
             +
           </button>
         </div>
       </td>
-      <td className="p-3.5 font-bold text-blue-zodiac">
+      <td className="py-3.5 px-1 sm:p-3.5 text-sm sm:text-base  font-bold text-blue-zodiac">
         ${product.price * product.quantity}
       </td>
     </tr>
