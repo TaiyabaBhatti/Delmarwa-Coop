@@ -9,10 +9,13 @@ import TabItem from "../TabItem";
 import AccountBlock from "../../components/navElements/AccountBlock";
 import PageIcon from "../../components/navElements/PageIcon";
 import { MENU_ITEMS } from "../../manualData/raw_data";
-import SubItemNavBlock from "./subItemNavBlock";
 import { NavLink } from "react-router-dom";
+import Logout from "../../components/navElements/Logout";
+import { AuthContext } from "../../context/authContext";
+import { useContext } from "react";
 
 const SideBar = ({}) => {
+  const { fullname, loginStatus } = useContext(AuthContext);
   const iconMap = {
     dashboard: <RxDashboard className="text-gray-600" />,
     listing: <HiMiniBuildingStorefront className="text-gray-600" />,
@@ -53,15 +56,21 @@ const SideBar = ({}) => {
 
                   {/* subtab */}
                   {activeTab === item.id && (
-                    <div className="ml-2 pl-2 mt-2 space-y-2 border-l-2 border-l-gray-200">
+                    <div className="ml-2 pl-2 mt-2 space-y-2 border-l-2 border-l-gray-200 flex flex-col">
                       {item.subItems.map((subObject, index) => (
-                        <NavLink
-                          to={subObject.path}
+                        // <NavLink
+                        //   to={subObject.path}
+                        //   key={index}
+                        //   className="text-sm text-gray-950 cursor-pointer hover:text-black bg-green-haze opacity-60 hover:opacity-70 rounded-lg px-2 py-1"
+                        // >
+                        //   {subObject.label}
+                        // </NavLink>
+                        <p
                           key={index}
                           className="text-sm text-gray-950 cursor-pointer hover:text-black bg-green-haze opacity-60 hover:opacity-70 rounded-lg px-2 py-1"
                         >
                           {subObject.label}
-                        </NavLink>
+                        </p>
                       ))}
                     </div>
                   )}
@@ -72,7 +81,12 @@ const SideBar = ({}) => {
         </div>
       </div>
       {/* admin account */}
-      <AccountBlock />
+      {loginStatus && (
+        <div className="bg-blue-zodiac/20 absolute bottom-0 left-0 w-full px-5 py-4 flex flex-row justify-between">
+          <h1 className="font-bold text-blue-zodiac">{fullname}</h1>
+          <Logout />
+        </div>
+      )}
     </aside>
   );
 };
